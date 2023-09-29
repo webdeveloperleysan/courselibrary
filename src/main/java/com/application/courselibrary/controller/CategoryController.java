@@ -31,14 +31,14 @@ public class CategoryController {
     }
 
     @GetMapping("/update-category/{id}")
-    public String updateCategory (@PathVariable Long id, Model model){
-        model.addAttribute("category",categoryService.findCategoryById(id));
+    public String showUpdateCategory(@PathVariable Long id, Model model) {
+        model.addAttribute("category", categoryService.findCategoryById(id));
         return "update-category";
     }
 
-    @PostMapping ("/update-category/{id}")
-    public String updateCategory (@PathVariable Long id, Category category, BindingResult result, Model model){
-        if (result.hasErrors()){
+    @PostMapping("/update-category/{id}")
+    public String updateCategory(@PathVariable Long id, Category category, BindingResult result, Model model) {
+        if (result.hasErrors()) {
             return "update-category";
         }
         categoryService.updateCategory(category);
@@ -47,13 +47,13 @@ public class CategoryController {
     }
 
     @GetMapping("/add-category")
-    public String showAddCategory (Category category){
+    public String showAddCategory(Category category) {
         return "add-category";
     }
 
     @PostMapping("/save-category")
-    public String saveCategory (Category category, BindingResult result, Model model){
-        if(result.hasErrors()){
+    public String saveCategory(Category category, BindingResult result, Model model) {
+        if (result.hasErrors()) {
             return "add-category";
         }
         categoryService.createCategory(category);
